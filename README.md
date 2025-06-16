@@ -32,7 +32,11 @@ Run crontab for editing:</br>
 
 Paste cron command, adjust for yourself, i.e: cron for everyday at 12:00:</br>
 >0 12 * * * bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+
 cron for exacly evert 2 day at 12:00, begining from 2025-01-01:</br>
->0 12 * * * [ $(( ( $(date +\%s) - $(date -d 2025-01-01 +\%s) ) / 86400 \% 2 )) -eq 0 ] && bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+>0 12 * * * [ $(( ( $(date +\\%s) - $(date -d 2025-01-01 +\\%s) ) / 86400 \\% 2 )) -eq 0 ] && bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+
 Test above cron command for exacly 2 days in terminal:</br>
-[ $(( ( $(date +%s) - $(date -d 2025-06-16 +%s) ) / 86400 % 2 )) -eq 0 ] && echo "Good day for run :)" || echo "Not today ;)"
+>[ $(( ( $(date +%s) - $(date -d 2025-06-16 +%s) ) / 86400 % 2 )) -eq 0 ] && echo "Good day for run :)" || echo "Not today ;)"
+
+Change reference date 2025-06-16 for testing purposes
