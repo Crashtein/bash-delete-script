@@ -30,5 +30,9 @@ This script makes temporary directory and subdirectory with files then it tests 
 Run crontab for editing:</br>
 >crontab -e
 
-Paste cron command, adjust for yourself, i.e: cron for every 2 days at 12:00:</br>
->0 12 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31 * * bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+Paste cron command, adjust for yourself, i.e: cron for everyday at 12:00:</br>
+>0 12 * * * bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+cron for exacly evert 2 day at 12:00, begining from 2025-01-01:</br>
+>0 12 * * * [ $(( ( $(date +\%s) - $(date -d 2025-01-01 +\%s) ) / 86400 \% 2 )) -eq 0 ] && bash /script-absolute-path/delete-files.sh --newer 2d --older 10h -p /path-to-scan-for-delete -r -D
+Test above cron command for exacly 2 days in terminal:</br>
+[ $(( ( $(date +%s) - $(date -d 2025-06-16 +%s) ) / 86400 % 2 )) -eq 0 ] && echo "Good day for run :)" || echo "Not today ;)"
